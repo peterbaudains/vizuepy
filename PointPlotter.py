@@ -32,6 +32,10 @@ filesystem which is bundled with UE. In Windows, this will be something like:
 Then Pandas can be installed by running the following in a command window:
 
 "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\ThirdParty\\Python3\\Win64\\python.exe" -m pip install pandas
+
+- Matplotlib is also required and can be installed using the same command as 
+above but replacing pandas for matplotlib
+
 """
 
 # Standard Library
