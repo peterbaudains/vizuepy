@@ -56,15 +56,15 @@ class UnrealPoint:
     properties that affect its visible characteristics.
     """
     
-    def __init__(self, id: int, x:float, y:float, z:float, label_prefix:str):
+    def __init__(self, id: int, x:float, y:float, z:float, label_prefix:str, scale:float):
 
         self.id = id
         self.x = x
         self.y = y
         self.z = z
-        self.location = unreal.Vector(x_value, y_value, z_value)
+        self.location = unreal.Vector(self.x, self.y, self.z)
 
-        self.scale = 1
+        self.scale = scale
         self.shape = 'Sphere' # Options for shape are: 'Cube', 'Sphere', 'Cylinder', 'Cone'
         self.material = None
 
@@ -213,7 +213,6 @@ def import_point_display_text(csv_file_name, destination_path, data_table_struct
     csv_factory.automated_import_settings.import_row_struct = unreal.load_object(None, data_table_struct_path)
     task.factory = csv_factory
     unreal.AssetToolsHelpers.get_asset_tools().import_asset_tasks([task])
-    os.remove(csv_file_name)
 
 
 if __name__=="__main__":
@@ -264,6 +263,6 @@ if __name__=="__main__":
 
     # import the point display text into a datatable of the same name as the csv file with the structure given by PointLabelStruct
     import_point_display_text(csv_file_name, '/Game/', '/Game/PointLabelStruct.PointLabelStruct')
-
+    os.remove(csv_file_name)
     # Create legend and load as a texture in UE
-    create_legend_texture(unique_values=unique_values, labels=['1', '2', '3', '4', '5'], cmap=cmap, norm=norm, texture_path='DataTextures/fsa_legend.png')
+    create_legend_texture(unique_values=unique_values, labels=['1', '2', '3', '4', '5'], cmap=cmap, norm=norm, texture_path='DataTextures/crime_legend.png')
